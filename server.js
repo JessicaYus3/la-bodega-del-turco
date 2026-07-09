@@ -39,13 +39,17 @@ app.get('/api/config', (req, res) => {
 
 app.get('/api/productos', (req, res) => {
   let productos = readJSON(PRODUCTS_FILE, []);
-  const { genero, subcategoria } = req.query;
+  const { genero, subcategoria, linea } = req.query;
 
-  if (genero && genero !== 'todos') {
-    productos = productos.filter((p) => p.genero === genero);
-  }
-  if (subcategoria && subcategoria !== 'todos') {
-    productos = productos.filter((p) => p.subcategoria === subcategoria);
+  if (linea === 'infantil') {
+    productos = productos.filter((p) => p.genero === 'nino' || p.genero === 'nina');
+  } else {
+    if (genero && genero !== 'todos') {
+      productos = productos.filter((p) => p.genero === genero);
+    }
+    if (subcategoria && subcategoria !== 'todos') {
+      productos = productos.filter((p) => p.subcategoria === subcategoria);
+    }
   }
   res.json(productos);
 });

@@ -449,27 +449,83 @@ body {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.cat-cards {
-  position: relative;
+.cat-lineas {
+  background: #F8F8F8;
+}
+
+.lineas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.linea-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.linea-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+  transform: translateY(-2px);
+}
+
+.linea-card-img-wrap {
+  aspect-ratio: 4/3;
+  border-radius: 8px;
   overflow: hidden;
-  background: var(--cream);
+  background: var(--white);
+  margin-bottom: 1rem;
 }
 
-.cat-cards::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url('/images/cat-cards-bg.png') center center / cover no-repeat;
-  z-index: 0;
+.linea-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.35s ease;
 }
 
-.cat-cards > .container {
-  position: relative;
-  z-index: 1;
+.linea-card:hover .linea-card-img-wrap img {
+  transform: scale(1.05);
 }
 
-.cat-cards .cat-section-sub {
-  text-align: center;
+.linea-card-body h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--navy);
+  margin-bottom: 0.35rem;
+}
+
+.linea-card-link {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gray-600);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.linea-card:hover .linea-card-link {
+  color: var(--navy);
+}
+
+.filtros-lineas {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.5rem;
 }
 
 .contacto {
@@ -522,7 +578,8 @@ body {
   color: var(--gray-600);
   font-size: 0.9rem;
   margin-top: -1.25rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
 }
 
 .circles-row {
@@ -1433,9 +1490,8 @@ body {
   .hero-badges { width: 100%; justify-content: center; }
   .glass-panel { padding: 1.5rem 1.25rem; }
   .circle-img { width: 88px; height: 88px; }
-  .circles-row { gap: 1rem; }
-  .genre-card { flex: 0 0 70%; min-width: 180px; }
-  .carousel-arrow { display: none; }
+  .lineas-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .linea-card { padding: 16px; }
   .cta-box { flex-direction: column; text-align: center; }
   .footer-inner { flex-direction: column; text-align: center; }
   .catalogo-inner { padding: 0 1.25rem; }

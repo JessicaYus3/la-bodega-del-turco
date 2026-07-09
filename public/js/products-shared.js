@@ -1,15 +1,31 @@
-function buildProductosUrl(genero, subcategoria) {
+function buildProductosUrl(genero, subcategoria, linea) {
   const params = new URLSearchParams();
-  if (genero && genero !== 'todos') params.set('genero', genero);
-  if (subcategoria && subcategoria !== 'todos') params.set('subcategoria', subcategoria);
+  if (linea && linea !== 'todos') {
+    if (linea === 'infantil') {
+      params.set('linea', 'infantil');
+    } else {
+      params.set('subcategoria', linea);
+    }
+  } else {
+    if (genero && genero !== 'todos') params.set('genero', genero);
+    if (subcategoria && subcategoria !== 'todos') params.set('subcategoria', subcategoria);
+  }
   const qs = params.toString();
   return qs ? `/api/productos?${qs}` : '/api/productos';
 }
 
-function productosPageUrl(genero, subcategoria) {
+function productosPageUrl(genero, subcategoria, linea) {
   const params = new URLSearchParams();
-  if (genero && genero !== 'todos') params.set('genero', genero);
-  if (subcategoria && subcategoria !== 'todos') params.set('subcategoria', subcategoria);
+  if (linea && linea !== 'todos') {
+    if (linea === 'infantil') {
+      params.set('linea', 'infantil');
+    } else {
+      params.set('subcategoria', linea);
+    }
+  } else {
+    if (genero && genero !== 'todos') params.set('genero', genero);
+    if (subcategoria && subcategoria !== 'todos') params.set('subcategoria', subcategoria);
+  }
   const qs = params.toString();
   return qs ? `/productos.html?${qs}` : '/productos.html';
 }

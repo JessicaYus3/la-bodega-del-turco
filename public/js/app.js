@@ -19,8 +19,8 @@ async function cargarConfig() {
   }
 }
 
-function irAProductos(genero, subcategoria) {
-  window.location.href = productosPageUrl(genero, subcategoria);
+function irAProductos(linea) {
+  window.location.href = productosPageUrl(null, null, linea);
 }
 
 async function cargarProductosPreview() {
@@ -101,41 +101,11 @@ function renderCarrito() {
   });
 }
 
-function initCarousel() {
-  const track = document.getElementById('generoCarousel');
-  const prev = document.getElementById('carouselPrev');
-  const next = document.getElementById('carouselNext');
-
-  if (!track) return;
-
-  const scrollAmount = () => track.clientWidth * 0.75;
-
-  prev.addEventListener('click', () => {
-    track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-  });
-
-  next.addEventListener('click', () => {
-    track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-  });
-}
 
 document.addEventListener('DOMContentLoaded', () => {
   cargarConfig();
   cargarProductosPreview();
   Cart.updateBadge();
-  initCarousel();
-
-  document.querySelectorAll('#circlesSub .circle-cat').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      irAProductos('todos', btn.dataset.sub);
-    });
-  });
-
-  document.querySelectorAll('#generoCarousel .genre-card').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      irAProductos(btn.dataset.genero, 'todos');
-    });
-  });
 
   const modal = document.getElementById('cartModal');
   document.getElementById('cartBtn').addEventListener('click', () => {

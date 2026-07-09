@@ -1,14 +1,18 @@
-let generoActivo = 'todos';
-let subActiva = 'todos';
+let lineaActiva = 'todos';
 
 function leerParamsUrl() {
   const params = new URLSearchParams(window.location.search);
-  generoActivo = params.get('genero') || 'todos';
-  subActiva = params.get('subcategoria') || 'todos';
+  if (params.get('linea') === 'infantil') {
+    lineaActiva = 'infantil';
+  } else if (params.get('subcategoria')) {
+    lineaActiva = params.get('subcategoria');
+  } else {
+    lineaActiva = 'todos';
+  }
 }
 
 function actualizarUrl() {
-  const url = productosPageUrl(generoActivo, subActiva);
+  const url = productosPageUrl(null, null, lineaActiva);
   window.history.replaceState({}, '', url);
 }
 
@@ -16,31 +20,23 @@ function actualizarFiltroTexto() {
   const el = document.getElementById('filtroActivo');
   if (!el) return;
 
-  const partes = [];
-  if (generoActivo !== 'todos') partes.push(`<strong>${GENEROS[generoActivo]}</strong>`);
-  if (subActiva !== 'todos') partes.push(`<strong>${SUBCATEGORIAS[subActiva]}</strong>`);
-
-  el.innerHTML = partes.length === 0
-    ? 'Mostrando todos los productos'
-    : `Filtrando por ${partes.join(' · ')}`;
+  if (lineaActiva === 'todos') {
+    el.innerHTML = 'Mostrando todos los productos';
+  } else {
+    const label = LINEAS[lineaActiva] || SUBCATEGORIAS[lineaActiva] || lineaActiva;
+    el.innerHTML = `Filtrando por <strong>${label}</strong>`;
+  }
 }
 
 function sincronizarFiltrosUI() {
-  document.querySelectorAll('[data-filtro-genero]').forEach((btn) => {
-    btn.classList.toggle('active', btn.dataset.filtroGenero === generoActivo);
+  document.querySelectorAll('[data-filtro-linea]').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.filtroLinea === lineaActiva);
   });
-
-  document.querySelectorAll('[data-filtro-sub]').forEach((btn) => {
-    btn.classList.toggle('active', btn.dataset.filtroSub === subActiva);
-  });
-
   actualizarFiltroTexto();
 }
 
-function aplicarFiltro(tipo, valor) {
-  if (tipo === 'genero') generoActivo = valor;
-  if (tipo === 'sub') subActiva = valor;
-
+function aplicarFiltro(valor) {
+  lineaActiva = valor;
   sincronizarFiltrosUI();
   actualizarUrl();
   cargarProductos();
@@ -52,7 +48,7 @@ async function cargarProductos() {
   grid.innerHTML = '<p class="loading">Cargando productos...</p>';
 
   try {
-    const res = await fetch(buildProductosUrl(generoActivo, subActiva));
+    const res = await fetch(buildProductosUrl(null, null, lineaActiva));
     const productos = await res.json();
 
     if (productos.length === 0) {
@@ -156,11 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Cart.updateBadge();
   initCartModal();
 
-  document.querySelectorAll('[data-filtro-genero]').forEach((btn) => {
-    btn.addEventListener('click', () => aplicarFiltro('genero', btn.dataset.filtroGenero));
-  });
-
-  document.querySelectorAll('[data-filtro-sub]').forEach((btn) => {
-    btn.addEventListener('click', () => aplicarFiltro('sub', btn.dataset.filtroSub));
+  document.querySelectorAll('[data-filtro-linea]').forEach((btn) => {
+    btn.addEventListener('click', () => aplicarFiltro(btn.dataset.filtroLinea));
   });
 });
