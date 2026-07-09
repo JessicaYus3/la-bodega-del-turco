@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — La Bodega del Turco</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <div id="loginScreen" class="admin-login">
+    <div class="login-card">
+      <h1>Administración</h1>
+      <p>Ingresa la contraseña para gestionar productos</p>
+      <form id="loginForm">
+        <input type="password" id="loginPassword" placeholder="Contraseña" required autocomplete="current-password">
+        <button type="submit" class="btn btn-primary btn-full">Ingresar</button>
+      </form>
+      <p class="login-error" id="loginError"></p>
+      <a href="/" class="back-link">← Volver al catálogo</a>
+    </div>
+  </div>
+
+  <div id="adminPanel" class="admin-panel" style="display:none;">
+    <header class="admin-header">
+      <div class="admin-header-inner">
+        <div class="admin-brand">
+          <h1>La Bodega del Turco — Admin</h1>
+        </div>
+        <div class="admin-actions">
+          <a href="/" class="btn btn-secondary">Ver catálogo</a>
+          <button class="btn btn-ghost" id="logoutBtn">Cerrar sesión</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <section class="admin-form-section">
+        <h2 id="formTitle">Agregar producto</h2>
+        <form id="productForm" class="product-form">
+          <input type="hidden" id="productId">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="numero">Número de producto *</label>
+              <input type="text" id="numero" placeholder="Ej: BT-008" required>
+            </div>
+            <div class="form-group">
+              <label for="nombre">Nombre *</label>
+              <input type="text" id="nombre" placeholder="Nombre del producto" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="genero">Categoría *</label>
+              <select id="genero" required>
+                <option value="">Seleccionar...</option>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="nino">Niño</option>
+                <option value="nina">Niña</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="subcategoria">Subcategoría *</label>
+              <select id="subcategoria" required>
+                <option value="">Seleccionar...</option>
+                <option value="ropa-interior">Ropa Interior</option>
+                <option value="medias">Medias</option>
+                <option value="ropa-deportiva">Ropa Deportiva</option>
+                <option value="otros">Otros</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="precioUnidad">Precio detalle (1-6 uds.) *</label>
+              <input type="number" id="precioUnidad" min="0" required>
+            </div>
+            <div class="form-group">
+              <label for="precioMayor">Precio mayor (+6 uds.) *</label>
+              <input type="number" id="precioMayor" min="0" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" rows="2" placeholder="Opcional"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="imagen">URL de imagen</label>
+            <input type="url" id="imagen" placeholder="https://...">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submitBtn">Agregar producto</button>
+            <button type="button" class="btn btn-ghost" id="cancelEdit" style="display:none;">Cancelar</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="admin-table-section">
+        <h2>Productos (<span id="productCount">0</span>)</h2>
+        <div class="table-wrapper">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Número</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Subcategoría</th>
+                <th>Detalle</th>
+                <th>Mayor</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="productsTable">
+              <tr><td colspan="7" class="loading">Cargando...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/js/categories.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+[
+  {
+    "id": "1",
+    "numero": "BT-001",
+    "nombre": "Camiseta Deportiva",
+    "genero": "hombre",
+    "subcategoria": "ropa-deportiva",
+    "descripcion": "Tela transpirable, ideal para entrenamiento.",
+    "precioUnidad": 35000,
+    "precioMayor": 28000,
+    "imagen": ""
+  },
+  {
+    "id": "2",
+    "numero": "BT-002",
+    "nombre": "Vestido Casual",
+    "genero": "mujer",
+    "subcategoria": "otros",
+    "descripcion": "Vestido importado, varios colores disponibles.",
+    "precioUnidad": 55000,
+    "precioMayor": 42000,
+    "imagen": ""
+  },
+  {
+    "id": "3",
+    "numero": "BT-003",
+    "nombre": "Boxer Pack x3",
+    "genero": "hombre",
+    "subcategoria": "ropa-interior",
+    "descripcion": "Pack de 3 boxers de algodón premium.",
+    "precioUnidad": 25000,
+    "precioMayor": 18000,
+    "imagen": ""
+  },
+  {
+    "id": "4",
+    "numero": "BT-004",
+    "nombre": "Camisa Formal",
+    "genero": "hombre",
+    "subcategoria": "otros",
+    "descripcion": "Corte slim fit, tela importada.",
+    "precioUnidad": 65000,
+    "precioMayor": 50000,
+    "imagen": ""
+  },
+  {
+    "id": "5",
+    "numero": "BT-005",
+    "nombre": "Leggings Deportivos",
+    "genero": "mujer",
+    "subcategoria": "ropa-deportiva",
+    "descripcion": "Alta compresión, tela dry-fit.",
+    "precioUnidad": 40000,
+    "precioMayor": 30000,
+    "imagen": ""
+  },
+  {
+    "id": "6",
+    "numero": "BT-006",
+    "nombre": "Medias Pack x6",
+    "genero": "nino",
+    "subcategoria": "medias",
+    "descripcion": "Pack de 6 pares, algodón suave.",
+    "precioUnidad": 18000,
+    "precioMayor": 12000,
+    "imagen": ""
+  },
+  {
+    "id": "7",
+    "numero": "BT-007",
+    "nombre": "Vestido Escolar",
+    "genero": "nina",
+    "subcategoria": "otros",
+    "descripcion": "Vestido escolar importado, varias tallas.",
+    "precioUnidad": 45000,
+    "precioMayor": 35000,
+    "imagen": ""
+  }
+]
