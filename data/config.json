@@ -1,7 +1,9 @@
 {
-  "whatsapp": "573001234567",
-  "telefono": "+57 300 123 4567",
-  "direccion": "Calle Principal #123, Ciudad, Colombia",
+  "whatsapp": "573155545052",
+  "telefono": "+57 315 554 5052",
+  "direccion": "Calle 11 # 9-24, Barrio La Estrella",
+  "mapsUrl": "https://maps.app.goo.gl/gHoc8h4et6PueVjYAa",
+  "mapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d249.26475708126213!2d-75.6110922722311!3d1.6136415939207225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e244e0f8da814cf%3A0x546dcb0823d0b1ac!2sCl.%2011%20%23%209-24%2C%20Florencia%2C%20Caquet%C3%A1%2C%20Colombia!5e0!3m2!1ses-419!2sus!4v1783718966813!5m2!1ses-419!2sus",
   "horario": "Lunes a Sábado: 9:00 AM - 7:00 PM",
   "pedidoMinimoMayor": 7,
   "adminPassword": "admin123"

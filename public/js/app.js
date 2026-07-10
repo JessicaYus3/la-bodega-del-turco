@@ -15,9 +15,9 @@ async function cargarConfig() {
       dirLink.textContent = direccion;
       if (direccion && direccion !== 'No disponible') {
         const mapsQuery = encodeURIComponent(direccion);
-        dirLink.href = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
+        dirLink.href = config.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
         if (mapFrame) {
-          mapFrame.src = `https://maps.google.com/maps?q=${mapsQuery}&z=15&output=embed`;
+          mapFrame.src = config.mapsEmbedUrl || `https://maps.google.com/maps?q=${mapsQuery}&z=15&output=embed`;
         }
       } else {
         dirLink.removeAttribute('href');
