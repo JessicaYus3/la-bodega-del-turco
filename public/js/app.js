@@ -5,28 +5,49 @@ async function cargarConfig() {
     const res = await fetch('/api/config');
     config = await res.json();
 
+    const direccion = config.direccion || 'No disponible';
     document.getElementById('contactoTelefono').textContent = config.telefono || 'No disponible';
-    document.getElementById('contactoDireccion').textContent = config.direccion || 'No disponible';
     document.getElementById('contactoHorario').textContent = config.horario || 'No disponible';
+
+    const dirLink = document.getElementById('contactoDireccion');
+    const mapFrame = document.getElementById('contactoMapa');
+    if (dirLink) {
+      dirLink.textContent = direccion;
+      if (direccion && direccion !== 'No disponible') {
+        const mapsQuery = encodeURIComponent(direccion);
+        dirLink.href = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
+        if (mapFrame) {
+          mapFrame.src = `https://maps.google.com/maps?q=${mapsQuery}&z=15&output=embed`;
+        }
+      } else {
+        dirLink.removeAttribute('href');
+      }
+    }
 
     const msg = encodeURIComponent('¡Hola! Me gustaría obtener más información sobre sus productos.');
     const waUrl = config.whatsapp ? `https://wa.me/${config.whatsapp}?text=${msg}` : '#';
 
     document.getElementById('contactoWhatsapp').href = waUrl;
-    document.getElementById('ctaWhatsapp').href = waUrl;
+
+    const heroWhatsapp = document.getElementById('heroWhatsapp');
+    if (heroWhatsapp) heroWhatsapp.href = waUrl;
+
+    const ctaWhatsapp = document.getElementById('ctaWhatsapp');
+    if (ctaWhatsapp) ctaWhatsapp.href = waUrl;
+
+    const footerWhatsapp = document.getElementById('footerWhatsapp');
+    if (footerWhatsapp) footerWhatsapp.href = waUrl;
   } catch (err) {
     console.error('Error cargando configuración:', err);
   }
-}
-
-function irAProductos(linea) {
-  window.location.href = productosPageUrl(null, null, linea);
 }
 
 async function cargarProductosPreview() {
   const grid = document.getElementById('productosGrid');
   const countEl = document.getElementById('resultCount');
   const verTodosEl = document.getElementById('verTodosLink');
+  if (!grid) return;
+
   grid.innerHTML = '<p class="loading">Cargando productos...</p>';
 
   try {
@@ -35,7 +56,7 @@ async function cargarProductosPreview() {
 
     if (productos.length === 0) {
       grid.innerHTML = '<p class="empty-state">No hay productos disponibles.</p>';
-      countEl.textContent = '';
+      if (countEl) countEl.textContent = '';
       if (verTodosEl) verTodosEl.style.display = 'none';
       return;
     }
@@ -44,9 +65,11 @@ async function cargarProductosPreview() {
     const preview = productos.slice(0, limit);
     const restantes = productos.length - preview.length;
 
-    countEl.textContent = restantes > 0
-      ? `Mostrando ${preview.length} de ${productos.length} productos`
-      : `${productos.length} producto${productos.length !== 1 ? 's' : ''}`;
+    if (countEl) {
+      countEl.textContent = restantes > 0
+        ? `Mostrando ${preview.length} de ${productos.length} productos`
+        : `${productos.length} producto${productos.length !== 1 ? 's' : ''}`;
+    }
 
     grid.innerHTML = preview.map(renderProducto).join('');
     bindProductoEvents();
@@ -58,7 +81,7 @@ async function cargarProductosPreview() {
     }
   } catch (err) {
     grid.innerHTML = '<p class="empty-state">Error al cargar productos.</p>';
-    countEl.textContent = '';
+    if (countEl) countEl.textContent = '';
     console.error(err);
   }
 }
@@ -100,7 +123,6 @@ function renderCarrito() {
     });
   });
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
   cargarConfig();

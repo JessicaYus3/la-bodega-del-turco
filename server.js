@@ -43,14 +43,14 @@ app.get('/api/productos', (req, res) => {
 
   if (linea === 'infantil') {
     productos = productos.filter((p) => p.genero === 'nino' || p.genero === 'nina');
-  } else {
-    if (genero && genero !== 'todos') {
-      productos = productos.filter((p) => p.genero === genero);
-    }
-    if (subcategoria && subcategoria !== 'todos') {
-      productos = productos.filter((p) => p.subcategoria === subcategoria);
-    }
+  } else if (subcategoria && subcategoria !== 'todos') {
+    productos = productos.filter((p) => p.subcategoria === subcategoria);
   }
+
+  if (genero && genero !== 'todos') {
+    productos = productos.filter((p) => p.genero === genero);
+  }
+
   res.json(productos);
 });
 

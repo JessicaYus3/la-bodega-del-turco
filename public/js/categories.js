@@ -1,3 +1,92 @@
+const CATEGORIAS_CARRUSEL = [
+  {
+    id: 'medias-tobilleras',
+    titulo: 'Medias Tobilleras',
+    badge: 'Medias',
+    imagen: '/images/carousel/medias-tobilleras.jpeg',
+    fit: 'contain',
+    url: '/productos.html?subcategoria=medias'
+  },
+  {
+    id: 'medias-canilleras',
+    titulo: 'Medias Canilleras',
+    badge: 'Medias',
+    imagen: '/images/carousel/medias-canilleras.jpeg',
+    fit: 'cover',
+    position: 'center center',
+    url: '/productos.html?subcategoria=medias'
+  },
+  {
+    id: 'medias-deportivas',
+    titulo: 'Medias Deportivas',
+    badge: 'Medias',
+    imagen: '/images/carousel/medias-deportivas.jpeg',
+    fit: 'cover',
+    position: 'center 20%',
+    url: '/productos.html?subcategoria=medias'
+  },
+  {
+    id: 'tops',
+    titulo: 'Tops y Camisetas',
+    badge: 'Deportivo',
+    imagen: '/images/carousel/tops-camisetas.jpeg',
+    fit: 'cover',
+    position: 'center top',
+    url: '/productos.html?subcategoria=ropa-deportiva'
+  },
+  {
+    id: 'leggings',
+    titulo: 'Leggings',
+    badge: 'Deportivo',
+    imagen: '/images/carousel/leggings.jpeg',
+    fit: 'cover',
+    position: 'center top',
+    url: '/productos.html?subcategoria=ropa-deportiva'
+  },
+  {
+    id: 'ropa-interior',
+    titulo: 'Ropa Interior',
+    badge: 'Interior',
+    imagen: '/images/carousel/ropa-interior.jpeg',
+    fit: 'contain',
+    url: '/productos.html?subcategoria=ropa-interior'
+  },
+  {
+    id: 'boxers',
+    titulo: 'Boxers',
+    badge: 'Interior',
+    imagen: '/images/carousel/boxers.jpeg',
+    fit: 'contain',
+    url: '/productos.html?subcategoria=ropa-interior'
+  },
+  {
+    id: 'deportivo',
+    titulo: 'Ropa Deportiva',
+    badge: 'Deportivo',
+    imagen: '/images/carousel/ropa-deportiva.jpeg',
+    fit: 'contain',
+    url: '/productos.html?subcategoria=ropa-deportiva'
+  },
+  {
+    id: 'infantil',
+    titulo: 'Línea Infantil',
+    badge: 'Niños',
+    imagen: '/images/carousel/linea-infantil.jpeg',
+    fit: 'cover',
+    position: 'center top',
+    url: '/productos.html?linea=infantil'
+  },
+  {
+    id: 'vestidos',
+    titulo: 'Vestidos y Faldas',
+    badge: 'Mujer',
+    imagen: '/images/carousel/vestidos-faldas.jpeg',
+    fit: 'cover',
+    position: 'center top',
+    url: '/productos.html?genero=mujer'
+  }
+];
+
 const GENEROS = {
   hombre: 'Hombre',
   mujer: 'Mujer',
@@ -35,9 +124,9 @@ const SUBCATEGORIA_IMAGENES = {
 };
 
 const GENERO_IMAGENES = {
-  mujer: '/images/linea-interior.png',
-  hombre: '/images/linea-deportivo.png',
-  nina: '/images/linea-infantil.png',
-  nino: '/images/linea-medias.png',
+  mujer: '/images/genero-mujer.png',
+  hombre: '/images/genero-hombre.png',
+  nina: '/images/genero-nina.png',
+  nino: '/images/genero-nino.png',
   todos: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&h=650&fit=crop'
 };

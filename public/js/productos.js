@@ -1,7 +1,12 @@
+let generoActivo = 'todos';
 let lineaActiva = 'todos';
+let busquedaActiva = '';
 
 function leerParamsUrl() {
   const params = new URLSearchParams(window.location.search);
+  generoActivo = params.get('genero') || 'todos';
+  busquedaActiva = (params.get('q') || '').trim().toLowerCase();
+
   if (params.get('linea') === 'infantil') {
     lineaActiva = 'infantil';
   } else if (params.get('subcategoria')) {
@@ -12,20 +17,48 @@ function leerParamsUrl() {
 }
 
 function actualizarUrl() {
-  const url = productosPageUrl(null, null, lineaActiva);
+  const params = new URLSearchParams();
+  if (lineaActiva === 'infantil') {
+    params.set('linea', 'infantil');
+  } else if (lineaActiva !== 'todos') {
+    params.set('subcategoria', lineaActiva);
+  }
+  if (generoActivo !== 'todos') params.set('genero', generoActivo);
+  if (busquedaActiva) params.set('q', busquedaActiva);
+  const qs = params.toString();
+  const url = qs ? `/productos.html?${qs}` : '/productos.html';
   window.history.replaceState({}, '', url);
+}
+
+function filtrarPorBusqueda(productos) {
+  if (!busquedaActiva) return productos;
+  return productos.filter((p) => {
+    const texto = [p.nombre, p.numero, p.descripcion, p.subcategoria, p.genero]
+      .filter(Boolean)
+      .join(' ')
+      .toLowerCase();
+    return texto.includes(busquedaActiva);
+  });
 }
 
 function actualizarFiltroTexto() {
   const el = document.getElementById('filtroActivo');
   if (!el) return;
 
-  if (lineaActiva === 'todos') {
-    el.innerHTML = 'Mostrando todos los productos';
-  } else {
-    const label = LINEAS[lineaActiva] || SUBCATEGORIAS[lineaActiva] || lineaActiva;
-    el.innerHTML = `Filtrando por <strong>${label}</strong>`;
+  const partes = [];
+  if (lineaActiva !== 'todos') {
+    partes.push(`<strong>${LINEAS[lineaActiva] || SUBCATEGORIAS[lineaActiva] || lineaActiva}</strong>`);
   }
+  if (generoActivo !== 'todos') {
+    partes.push(`<strong>${GENEROS[generoActivo]}</strong>`);
+  }
+  if (busquedaActiva) {
+    partes.push(`búsqueda: <strong>"${busquedaActiva}"</strong>`);
+  }
+
+  el.innerHTML = partes.length === 0
+    ? 'Mostrando todos los productos'
+    : `Filtrando por ${partes.join(' · ')}`;
 }
 
 function sincronizarFiltrosUI() {
@@ -35,7 +68,7 @@ function sincronizarFiltrosUI() {
   actualizarFiltroTexto();
 }
 
-function aplicarFiltro(valor) {
+function aplicarFiltroLinea(valor) {
   lineaActiva = valor;
   sincronizarFiltrosUI();
   actualizarUrl();
@@ -48,8 +81,19 @@ async function cargarProductos() {
   grid.innerHTML = '<p class="loading">Cargando productos...</p>';
 
   try {
-    const res = await fetch(buildProductosUrl(null, null, lineaActiva));
-    const productos = await res.json();
+    const params = new URLSearchParams();
+    if (lineaActiva === 'infantil') {
+      params.set('linea', 'infantil');
+    } else if (lineaActiva !== 'todos') {
+      params.set('subcategoria', lineaActiva);
+    }
+    if (generoActivo !== 'todos') params.set('genero', generoActivo);
+
+    const qs = params.toString();
+    const url = qs ? `/api/productos?${qs}` : '/api/productos';
+    const res = await fetch(url);
+    let productos = await res.json();
+    productos = filtrarPorBusqueda(productos);
 
     if (productos.length === 0) {
       grid.innerHTML = '<p class="empty-state">No hay productos en esta categoría.</p>';
@@ -153,6 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCartModal();
 
   document.querySelectorAll('[data-filtro-linea]').forEach((btn) => {
-    btn.addEventListener('click', () => aplicarFiltro(btn.dataset.filtroLinea));
+    btn.addEventListener('click', () => aplicarFiltroLinea(btn.dataset.filtroLinea));
   });
 });
