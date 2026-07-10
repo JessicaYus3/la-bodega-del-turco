@@ -2,6 +2,7 @@
 builder = "NIXPACKS"
 
 [deploy]
-startCommand = "npm start"
+# Debe coincidir con Public Networking → Port 8080 en Railway
+startCommand = "PORT=8080 node server.js"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
