@@ -124,10 +124,29 @@ function renderCarrito() {
   });
 }
 
+function initCatPremiumCarousel() {
+  const track = document.getElementById('catPremiumTrack');
+  const prev = document.getElementById('catPremiumPrev');
+  const next = document.getElementById('catPremiumNext');
+  if (!track || !prev || !next) return;
+
+  const scrollByCard = (dir) => {
+    const card = track.querySelector('.cat-premium-card');
+    const styles = getComputedStyle(track);
+    const gap = parseFloat(styles.columnGap || styles.gap) || 0;
+    const amount = card ? card.offsetWidth + gap : Math.round(track.clientWidth * 0.7);
+    track.scrollBy({ left: dir * amount, behavior: 'smooth' });
+  };
+
+  prev.addEventListener('click', () => scrollByCard(-1));
+  next.addEventListener('click', () => scrollByCard(1));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   cargarConfig();
   cargarProductosPreview();
   Cart.updateBadge();
+  initCatPremiumCarousel();
 
   const modal = document.getElementById('cartModal');
   document.getElementById('cartBtn').addEventListener('click', () => {
