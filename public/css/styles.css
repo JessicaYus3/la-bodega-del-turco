@@ -903,7 +903,7 @@ img, video {
 }
 
 .mayoristas-split-tile-img--boxers {
-  object-position: center center;
+  object-position: left center;
 }
 
 .mayoristas-split-tile-img--interior {
@@ -1205,7 +1205,7 @@ img, video {
   max-width: none;
   width: 100%;
   margin: 0;
-  padding: 0 3cm 0 5cm;
+  padding: 0 clamp(1rem, 4vw, 3cm) 0 clamp(1.25rem, 6vw, 5cm);
   box-sizing: border-box;
 }
 
@@ -1234,6 +1234,8 @@ img, video {
 
 .cat-premium-wrap {
   position: relative;
+  container-type: inline-size;
+  container-name: cat-premium;
 }
 
 .cat-premium-track {
@@ -1257,9 +1259,14 @@ img, video {
   position: relative;
   display: flex;
   flex-direction: column;
-  flex: 0 0 clamp(280px, 22vw, 350px);
-  width: clamp(280px, 22vw, 350px);
-  min-width: clamp(280px, 22vw, 350px);
+  /* Fallback sin container queries */
+  flex: 0 0 clamp(160px, 22vw, 320px);
+  width: clamp(160px, 22vw, 320px);
+  min-width: clamp(160px, 22vw, 320px);
+  /* Escala con el ancho real del carrusel */
+  flex: 0 0 clamp(160px, 28cqi, 320px);
+  width: clamp(160px, 28cqi, 320px);
+  min-width: clamp(160px, 28cqi, 320px);
   background: var(--white);
   text-decoration: none;
   color: inherit;
@@ -1324,7 +1331,8 @@ img, video {
 
 .cat-premium-nav {
   position: absolute;
-  top: calc(clamp(280px, 22vw, 350px) / 2);
+  top: calc(clamp(160px, 22vw, 320px) / 2);
+  top: calc(clamp(160px, 28cqi, 320px) / 2);
   transform: translateY(-50%);
   z-index: 3;
   width: 44px;
@@ -3462,13 +3470,17 @@ img, video {
   }
 
   .cat-premium-card {
-    flex: 0 0 265px;
-    width: 265px;
-    min-width: 265px;
+    flex: 0 0 clamp(150px, 30vw, 260px);
+    width: clamp(150px, 30vw, 260px);
+    min-width: clamp(150px, 30vw, 260px);
+    flex: 0 0 clamp(150px, 36cqi, 260px);
+    width: clamp(150px, 36cqi, 260px);
+    min-width: clamp(150px, 36cqi, 260px);
   }
 
   .cat-premium-nav {
-    top: 132px;
+    top: calc(clamp(150px, 30vw, 260px) / 2);
+    top: calc(clamp(150px, 36cqi, 260px) / 2);
   }
 
   .cat-premium-prev { left: 0.15rem; }
@@ -3635,16 +3647,19 @@ img, video {
   }
 
   .cat-premium-card {
-    flex: 0 0 74vw;
-    width: 74vw;
-    min-width: 74vw;
-    max-width: 300px;
+    flex: 0 0 clamp(140px, 42vw, 220px);
+    width: clamp(140px, 42vw, 220px);
+    min-width: clamp(140px, 42vw, 220px);
+    flex: 0 0 clamp(140px, 48cqi, 220px);
+    width: clamp(140px, 48cqi, 220px);
+    min-width: clamp(140px, 48cqi, 220px);
   }
 
   .cat-premium-nav {
     width: 40px;
     height: 40px;
-    top: min(37vw, 150px);
+    top: calc(clamp(140px, 42vw, 220px) / 2);
+    top: calc(clamp(140px, 48cqi, 220px) / 2);
   }
 
   .cat-premium-prev { left: 0.15rem; }

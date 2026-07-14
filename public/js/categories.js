@@ -1,89 +1,139 @@
 const CATEGORIAS_CARRUSEL = [
   {
-    id: 'medias-tobilleras',
-    titulo: 'Medias Tobilleras',
-    badge: 'Medias',
-    imagen: '/images/carousel/medias-tobilleras.jpeg',
-    fit: 'contain',
-    url: '/productos.html?subcategoria=medias'
-  },
-  {
-    id: 'medias-canilleras',
-    titulo: 'Medias Canilleras',
-    badge: 'Medias',
-    imagen: '/images/carousel/medias-canilleras.jpeg',
-    fit: 'cover',
-    position: 'center center',
-    url: '/productos.html?subcategoria=medias'
-  },
-  {
-    id: 'medias-deportivas',
-    titulo: 'Medias Deportivas',
-    badge: 'Medias',
-    imagen: '/images/carousel/medias-deportivas.jpeg',
-    fit: 'cover',
-    position: 'center 20%',
-    url: '/productos.html?subcategoria=medias'
-  },
-  {
-    id: 'tops',
-    titulo: 'Tops y Camisetas',
-    badge: 'Deportivo',
-    imagen: '/images/carousel/tops-camisetas.jpeg',
-    fit: 'cover',
-    position: 'center top',
-    url: '/productos.html?subcategoria=ropa-deportiva'
-  },
-  {
-    id: 'leggings',
-    titulo: 'Leggings',
-    badge: 'Deportivo',
-    imagen: '/images/carousel/leggings.jpeg',
-    fit: 'cover',
-    position: 'center top',
-    url: '/productos.html?subcategoria=ropa-deportiva'
-  },
-  {
-    id: 'ropa-interior',
-    titulo: 'Ropa Interior',
+    id: 'sets',
+    titulo: 'Sets',
     badge: 'Interior',
-    imagen: '/images/carousel/ropa-interior.jpeg',
-    fit: 'contain',
+    imagen: '/images/categorias/deportivo-01.jpg',
+    fit: 'cover',
+    url: '/productos.html?subcategoria=ropa-interior'
+  },
+  {
+    id: 'enterizos',
+    titulo: 'Enterizos',
+    badge: 'Deportivo',
+    imagen: '/images/categorias/deportivo-02.jpg',
+    fit: 'cover',
+    url: '/productos.html?subcategoria=ropa-deportiva'
+  },
+  {
+    id: 'camisetas',
+    titulo: 'Camisetas',
+    badge: 'Deportivo',
+    imagen: '/images/categorias/deportivo-04.jpg',
+    fit: 'cover',
+    url: '/productos.html?subcategoria=ropa-deportiva'
+  },
+  {
+    id: 'conjuntos',
+    titulo: 'Conjuntos',
+    badge: 'Deportivo',
+    imagen: '/images/categorias/deportivo-05.jpg',
+    fit: 'cover',
+    url: '/productos.html?subcategoria=ropa-deportiva'
+  },
+  {
+    id: 'chaquetas',
+    titulo: 'Chaquetas',
+    badge: 'Deportivo',
+    imagen: '/images/categorias/lifestyle-01.jpg',
+    fit: 'cover',
+    url: '/productos.html?subcategoria=ropa-deportiva'
+  },
+  {
+    id: 'fitness',
+    titulo: 'Fitness',
+    badge: 'Deportivo',
+    imagen: '/images/categorias/lifestyle-02.jpg',
+    fit: 'cover',
+    url: '/productos.html?subcategoria=ropa-deportiva'
+  },
+  {
+    id: 'jerseys',
+    titulo: 'Jerseys',
+    badge: 'Deportivo',
+    imagen: '/images/categorias/lifestyle-03.jpg',
+    fit: 'cover',
+    url: '/productos.html?subcategoria=ropa-deportiva'
+  },
+  {
+    id: 'hoodies',
+    titulo: 'Hoodies',
+    badge: 'Deportivo',
+    imagen: '/images/categorias/lifestyle-04.jpg',
+    fit: 'cover',
+    url: '/productos.html?subcategoria=ropa-deportiva'
+  },
+  {
+    id: 'media-cana',
+    titulo: 'Media caña',
+    badge: 'Largo',
+    imagen: '/images/categorias/largo-media-01.jpg',
+    fit: 'cover',
+    url: '/productos.html?subcategoria=medias'
+  },
+  {
+    id: 'medias-clasicas',
+    titulo: 'Medias clásicas',
+    badge: 'Largo',
+    imagen: '/images/categorias/largo-media-02.jpg',
+    fit: 'cover',
+    url: '/productos.html?subcategoria=medias'
+  },
+  {
+    id: 'pack-medias',
+    titulo: 'Pack de medias',
+    badge: 'Largo',
+    imagen: '/images/categorias/largo-media-03.jpg',
+    fit: 'cover',
+    url: '/productos.html?subcategoria=medias'
+  },
+  {
+    id: 'tobilleras',
+    titulo: 'Tobilleras',
+    badge: 'Largo',
+    imagen: '/images/categorias/largo-media-04.jpg',
+    fit: 'cover',
+    url: '/productos.html?subcategoria=medias'
+  },
+  {
+    id: 'media-colegial',
+    titulo: 'Media colegial',
+    badge: 'Largo',
+    imagen: '/images/categorias/largo-media-05.jpg',
+    fit: 'cover',
+    url: '/productos.html?subcategoria=medias'
+  },
+  {
+    id: 'brasier',
+    titulo: 'Brasier',
+    badge: 'Interior',
+    imagen: '/images/categorias/interior-01.jpg',
+    fit: 'cover',
     url: '/productos.html?subcategoria=ropa-interior'
   },
   {
     id: 'boxers',
     titulo: 'Boxers',
     badge: 'Interior',
-    imagen: '/images/carousel/boxers.jpeg',
-    fit: 'contain',
+    imagen: '/images/categorias/interior-02.jpg',
+    fit: 'cover',
     url: '/productos.html?subcategoria=ropa-interior'
   },
   {
-    id: 'deportivo',
-    titulo: 'Ropa Deportiva',
-    badge: 'Deportivo',
-    imagen: '/images/carousel/ropa-deportiva.jpeg',
-    fit: 'contain',
-    url: '/productos.html?subcategoria=ropa-deportiva'
+    id: 'pijamas',
+    titulo: 'Pijamas',
+    badge: 'Otros',
+    imagen: '/images/categorias/interior-03.jpg',
+    fit: 'cover',
+    url: '/productos.html?subcategoria=otros'
   },
   {
-    id: 'infantil',
-    titulo: 'Línea Infantil',
+    id: 'medias-infantiles',
+    titulo: 'Medias infantiles',
     badge: 'Niños',
-    imagen: '/images/carousel/linea-infantil.jpeg',
+    imagen: '/images/categorias/interior-04.jpg',
     fit: 'cover',
-    position: 'center top',
     url: '/productos.html?linea=infantil'
-  },
-  {
-    id: 'vestidos',
-    titulo: 'Vestidos y Faldas',
-    badge: 'Mujer',
-    imagen: '/images/carousel/vestidos-faldas.jpeg',
-    fit: 'cover',
-    position: 'center top',
-    url: '/productos.html?genero=mujer'
   }
 ];
 
